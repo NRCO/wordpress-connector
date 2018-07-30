@@ -1,6 +1,6 @@
 <?php
-namespace App\Extensions\FusionWordpress\Providers;
-use App\Extensions\FusionWordpress\Services\ConfigLoader;
+namespace App\Extensions\WordpressConnector\Providers;
+use App\Extensions\WordpressConnector\Services\ConfigLoader;
 use Illuminate\Support\ServiceProvider;
 class WPProvider extends ServiceProvider
 {

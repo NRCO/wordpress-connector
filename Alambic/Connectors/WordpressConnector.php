@@ -1,10 +1,10 @@
 <?php
-namespace App\Extensions\AmpizeNR\Alambic\Connectors;
+namespace App\Extensions\WordpressConnector\Alambic\Connectors;
 use Alambic\Exception\ConnectorArgs;
 use Alambic\Exception\ConnectorConfig;
 use Alambic\Exception\ConnectorInternal;
 use GuzzleHttp\Client as Client;
-class FusionWordpress
+class WordpressConnector
 {
     protected $client;
     public function __invoke($payload=[])

@@ -1,5 +1,5 @@
 <?php
-namespace App\Extensions\FusionWordpress\Services;
+namespace App\Extensions\WordpressConnector\Services;
 use Alambic\Exception\Config;
 class ConfigLoader
 {
@@ -38,7 +38,7 @@ class ConfigLoader
                 $wpConnectorDef["postPipeline"]=["RedisCache\\RedisCache"];
                 $wpConnectorDef["redisCacheHost"]=getenv("redisCacheHost") ? getenv("redisCacheHost") : "redis";
             }
-            $wpConnectorDef["connectorClass"]="App\\Extensions\\FusionWordpress\\Alambic\\Connectors\\WPConnector";
+            $wpConnectorDef["connectorClass"]="App\\Extensions\\WordpressConnector\\Alambic\\Connectors\\WPConnector";
             $alambicConfig["alambicConnectors"][$wpConnectorDef["name"]]=$wpConnectorDef;
         }
 
