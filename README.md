@@ -1,2 +1,2 @@
-# fusion-wordpress
-Wordpress plugin for WebTales Fusion
+# wordpress-connector
+Wordpress connector for webtales.io
