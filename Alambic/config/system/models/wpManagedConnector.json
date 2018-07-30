@@ -1,0 +1,84 @@
+{
+  "WPConnector": {
+    "name": "WPConnector",
+    "expose": true,
+    "multiEndpoint": {
+      "name": "WPConnectors",
+      "args": {}
+    },
+    "singleEndpoint": {
+      "name": "WPConnector",
+      "args": {
+        "name": {
+          "type": "String",
+          "required": true
+        }
+      }
+    },
+    "fields": {
+      "name": {
+        "type": "String",
+        "required": true
+      },
+      "jsonModel": {
+        "type": "String"
+      },
+      "host": {
+        "type": "String"
+      },
+      "useCache": {
+        "type": "Boolean"
+      },
+      "defaultCacheTTL": {
+        "type": "Int"
+      }
+    },
+    "mutations": {
+      "createWPConnector": {
+        "excludedArgs": [],
+        "args": {
+          "jsonModel": {
+            "type": "String",
+            "required": true
+          }
+        },
+        "type": "WPConnector",
+        "methodName": "create"
+      },
+      "updateWPConnector": {
+        "excludedArgs": [],
+        "args": {
+          "jsonModel": {
+            "type": "String",
+            "required": true
+          }
+        },
+        "type": "WPConnector",
+        "methodName": "update"
+      },
+      "deleteWPConnector": {
+        "excludedArgs": [
+          "all"
+        ],
+        "args": {
+          "name": {
+            "type": "String",
+            "required": true
+          }
+        },
+        "type": "WPConnector",
+        "methodName": "delete"
+      }
+    },
+    "connector": {
+      "type": "CloudGDS",
+      "configs": {
+        "kind": "WPConnector",
+        "excludeFromIndexes": [
+          "jsonModel"
+        ],
+        "idField": "name"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "webtales/FusionWordpress",
+  "minimum-stability": "dev",
+  "require": {
+    "lullabot/amp":"*",
+    "php-http/guzzle6-adapter": "^1.1"
+  },
+  "type":"library",
+  "config": {
+  }
+}
