@@ -16,7 +16,7 @@ class WordpressController extends BaseController
             abort(400,'Missing required params');
         }
         $client = new Client;
-        $res = $client->request('GET','http://'.$host.'wp-json/ampize/v1/model',[
+        $res = $client->request('GET','http://'.$host.'/wp-json/ampize/v1/model',[
             'http_errors' => false,
             'verify' => false
         ]);
