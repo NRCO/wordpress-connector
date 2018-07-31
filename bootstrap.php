@@ -9,7 +9,7 @@
     $adminConfigPaths[]=realpath(__DIR__.'/Alambic/config/system');
     $dataConfigPaths=config("dataAlambicConfigPaths");
     $dataConfigPaths[]=realpath(__DIR__.'/Alambic/config/custom');
-    $wpBoExtraScripts = ["/resources/wp/src/modules/wpConnector.js"];
+    $wpBoExtraScripts = ["/resource/wp/src/modules/wpConnector.js"];
     $wpBoExtraStyles = [];
     $wpBoExtraModules = ['ampize.wpConnector'];
     $boExtraScripts = !empty(config("boExtraScripts")) ? array_merge(config("boExtraScripts"), $wpBoExtraScripts) : $wpBoExtraScripts;
