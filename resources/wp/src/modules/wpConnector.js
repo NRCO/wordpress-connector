@@ -3,7 +3,7 @@
     module.controller("wpListController",["$scope","$http","$mdToast","$mdDialog",function($scope,$http,$mdToast,$mdDialog){
         var me=this;
         me.connectors=[];
-        me.isAuthorized=false;
+        me.isAuthorized=true;
         me.isLoading=false;
         me.refreshConnectors();
         me.getNameBlacklist=function(){
