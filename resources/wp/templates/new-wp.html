@@ -1,0 +1,61 @@
+<md-dialog class="ampize-min-dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout-align="center center">
+            <h2 ng-if="!NWPSCtrl.isEdit">Add a WordPress Source</h2>
+            <h2 ng-if="NWPSCtrl.isEdit">Edit "{{NWPSCtrl.connectorName}}" NR Source</h2>
+        </div>
+    </md-toolbar>
+    <div class="ampize-stepper-bar" layout="row" layout-align="center center">
+        <span class="ampize-step" ng-class="{'ampize-step-active':NWPSCtrl.currentStage==1}"><span class="ampize-step-icon" md-colors="{background: 'default-primary'}">
+            <md-icon ng-show="NWPSCtrl.currentStage>1" class="material-icons" style="color: rgb(255, 255, 255);"> done </md-icon>
+            <span ng-show="NWPSCtrl.currentStage<=1">1</span>
+        </span>Source</span>
+        <span flex class="ampize-interstep"></span>
+        <span class="ampize-step" ng-class="{'ampize-step-active':NWPSCtrl.currentStage==2}"><span class="ampize-step-icon" md-colors="{background: NWPSCtrl.currentStage>=2 ? 'default-primary' : 'default-background-400'}">
+            <md-icon ng-show="NWPSCtrl.currentStage>2" class="material-icons" style="color: rgb(255, 255, 255);"> done </md-icon>
+            <span ng-show="NWPSCtrl.currentStage<=2">2</span>
+        </span>Data model</span>
+        <span ng-if="NWPSCtrl.hasCacheStage" class="ampize-step" ng-class="{'ampize-step-active':NWPSCtrl.currentStage==4}"><span class="ampize-step-icon" md-colors="{background: NWPSCtrl.currentStage>=4 ? 'default-primary' : 'default-background-400'}">4</span>Settings</span>
+    </div>
+
+        <md-dialog-content layout-padding="">
+            <section layout="column" ng-show="NWPSCtrl.currentStage==1" layout-padding="" layout-margin="">
+                <form layout="column" name="newNRSource1">
+                <md-input-container>
+                    <label>Name</label>
+                    <input name="name" blacklist="{{nameBlacklist}}" pattern="[a-zA-Z0-9]+" ng-model="NWPSCtrl.newForm.name"  ng-if="!NWPSCtrl.isEdit" md-autofocus required>
+                    <input name="name" pattern="[a-zA-Z0-9]+" ng-model="NWPSCtrl.newForm.name" ng-readonly="true" ng-if="NWPSCtrl.isEdit" required>
+                    <div ng-messages="newNRSource1.name.$error">
+                        <div ng-message="required">This field is required</div>
+                        <div ng-message="pattern">
+                            This field requires alphanumeric  characters only
+                        </div>
+                        <div ng-message="blacklist">A data source with this name already exists</div>
+                    </div>
+                    <div class="hint">No spaces or special characters</div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Host</label>
+                    <input name="host"  ng-model="NWPSCtrl.newForm.host" required>
+                    <div ng-messages="newNRSource1.host.$error">
+                        <div ng-message="required">This field is required</div>
+                    </div>
+                    <div class="hint">Host of the WordPress website</div>
+                </md-input-container>
+                </form>
+            </section>
+            <section layout="column" ng-show="NWPSCtrl.currentStage==2" layout-padding="" layout-margin="">
+                <p class="ampize-fail" ng-show="!NWPSCtrl.jsonIsValid()">Model is not valid JSON</p>
+                <div ui-ace="{theme:'twilight',mode: 'json'}" ng-model="NWPSCtrl.newForm.jsonModel"></div>
+                <md-button ng-click="NWPSCtrl.runIntrospect()" class="md-button md-primary md-raised"><md-icon class="material-icons"> cloud_download </md-icon> Introspect </md-button>
+            </section>
+        </md-dialog-content>
+        <md-dialog-actions layout-align="center center" >
+            <md-button ng-if="!NWPSCtrl.isLoading" ng-disabled="NWPSCtrl.currentStage==1" ng-click="NWPSCtrl.stepBack()" type="button"> Back </md-button>
+            <div flex></div>
+            <md-button ng-if="!NWPSCtrl.isLoading" ng-click="NWPSCtrl.closeEditor()" type="button"> Cancel </md-button>
+            <md-button ng-if="!NWPSCtrl.isLoading&&NWPSCtrl.currentStage==1" ng-disabled="!newNRSource1.$valid" ng-click="NWPSCtrl.stepForward()" type="button" class="md-primary"> Continue </md-button>
+            <md-button ng-if="!NWPSCtrl.isLoading&&NWPSCtrl.isEdit&&NWPSCtrl.currentStage==2" ng-disabled="!NWPSCtrl.jsonIsValid()" type="submit" class="md-primary" ng-click="NWPSCtrl.submitNewAPI()"> Save changes </md-button>
+            <md-button ng-if="!NWPSCtrl.isLoading&&!NWPSCtrl.isEdit&&NWPSCtrl.currentStage==2" ng-disabled="!NWPSCtrl.jsonIsValid()" type="submit" class="md-primary" ng-click="NWPSCtrl.submitNewAPI()"> Create data source </md-button>
+        </md-dialog-actions>
+</md-dialog>

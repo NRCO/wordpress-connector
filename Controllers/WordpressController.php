@@ -16,18 +16,18 @@ class WordpressController extends BaseController
             abort(400,'Missing required params');
         }
         $client = new Client;
-        $res = $client->request('GET','http://'.$host.'/wp-json/ampize/v1/model',[
+        $res = $client->request('GET',$host.'/wp-json/ampize/v1/model',[
             'http_errors' => false,
             'verify' => false
         ]);
         $mapping=json_decode($res->getBody()->getContents(),true);
         $model=[];
         foreach($mapping as $type => $typeDef) {
-            $typeName = $name.".".$type;
-            $model[$typeName] = $mapping[$typeDef];
+            $typeName = $name."_".$type;
+            $model[$typeName] = $mapping[$type];
             $model[$typeName]["name"] = $typeName;
-            if (isset($model[$typeName]["singleEndpoint"["name"])) $model[$typeName]["singleEndpoint"]["name"] = $name.".".$model[$typeName]["singleEndpoint"]["name"];
-            if (isset($model[$typeName]["multiEndpoint"["name"])) $model[$typeName]["multiEndpoint"]["name"] = $name.".".$model[$typeName]["multiEndpoint"]["name"];
+            if (isset($model[$typeName]["singleEndpoint"]["name"])) $model[$typeName]["singleEndpoint"]["name"] = $name."_".$model[$typeName]["singleEndpoint"]["name"];
+            if (isset($model[$typeName]["multiEndpoint"]["name"])) $model[$typeName]["multiEndpoint"]["name"] = $name."_".$model[$typeName]["multiEndpoint"]["name"];
             if (isset($model[$typeName]["connector"])) $model[$typeName]["connector"]["type"] = $name;
         }
         return response()->json($model);

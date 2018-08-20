@@ -21,10 +21,12 @@
         "boExtraStyles" => $boExtraStyles,
         "boExtraModules" => $boExtraModules,
         "alambicConfigurators" => $otherConfigurators,
-        "installedFeatures.wpConnector"=>true,
         "adminAlambicConfigPaths"=>$adminConfigPaths,
         "dataAlambicConfigPaths"=>$dataConfigPaths,
         "resourceNamespaces.wp"=>[
             "path"=>realpath(__DIR__.'/resources/wp/')
         ],
     ]);
+    $app->group(['namespace' => 'App\Extensions\WordpressConnector\Controllers'], function ($app) {
+      $app->get('/api/admin/wp/introspect', "WordpressController@introspect");
+    });

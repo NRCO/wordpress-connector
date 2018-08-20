@@ -1,11 +1,9 @@
 (function (angular, undefined) {
     var module=angular.module('ampize.wpConnector', ['ngMaterial', 'ngMessages']);
-    module.controller("wpListController",["$scope","$http","$mdToast","$mdDialog",function($scope,$http,$mdToast,$mdDialog){
+    module.controller("WPListController",["$scope","$http","$mdToast","$mdDialog",function($scope,$http,$mdToast,$mdDialog){
         var me=this;
         me.connectors=[];
-        me.isAuthorized=true;
         me.isLoading=false;
-        me.refreshConnectors();
         me.getNameBlacklist=function(){
             var nameBlacklist="";
             angular.forEach(me.connectors,function(connector){
@@ -25,6 +23,7 @@
                 }
             );
         };
+        me.refreshConnectors();
         me.launchEditor=function(connectorName){
             $mdDialog.show({
                 templateUrl: '/resource/wp/templates/new-wp.html',
@@ -65,18 +64,8 @@
 
     module.controller("WPAddController",["$scope","$http","$mdDialog",function($scope,$http,$mdDialog){
         var me=this;
-        me.isAuthorized=false;
-        $http.get("/api/admin/wp/is-authorized").then(
-            function(response){
-                if (response.data.success) {
-                    me.isAuthorized=true;
-                }
-            }
-        );
         me.launchAdd=function(){
-            if(me.isAuthorized){
-                window.launchWPAdd();
-            }
+            window.launchWPAdd();
         }
     }]);
 
@@ -96,8 +85,9 @@
         if(connectorName&&connectorName!=""){
             me.isEdit=true;
             me.connectorName=connectorName;
-            $http.get('/api/admin/graphql?query=query q{wpConnector (name:"' + me.connectorName + '"){name accessToken jsonModel host contentTypeId useCache defaultCacheTTL}}').then(
+            $http.get('/api/admin/graphql?query=query q{wpConnector (name:"' + me.connectorName + '"){name jsonModel host useCache defaultCacheTTL}}').then(
                 function (response) {
+                  console.log(response.data);
                     var newData=response.data.data.wpConnector;
                     if(newData.jsonModel){
                         newData.jsonModel = newData.jsonModel.replace(/'/g, '"');
@@ -145,9 +135,7 @@
             $http.get("/api/admin/wp/introspect",{
                 params:{
                     host:me.newForm.host,
-                    name:me.newForm.name,
-                    accessToken:me.newForm.accessToken,
-                    contentTypeId:me.newForm.contentTypeId
+                    name:me.newForm.name
                 }
             }).then(
                 function(response){

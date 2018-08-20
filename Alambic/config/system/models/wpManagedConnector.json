@@ -1,13 +1,13 @@
 {
-  "WPConnector": {
-    "name": "WPConnector",
+  "WordpressConnector": {
+    "name": "WordpressConnector",
     "expose": true,
     "multiEndpoint": {
-      "name": "WPConnectors",
+      "name": "wpConnectors",
       "args": {}
     },
     "singleEndpoint": {
-      "name": "WPConnector",
+      "name": "wpConnector",
       "args": {
         "name": {
           "type": "String",
@@ -42,7 +42,7 @@
             "required": true
           }
         },
-        "type": "WPConnector",
+        "type": "WordpressConnector",
         "methodName": "create"
       },
       "updateWPConnector": {
@@ -53,7 +53,7 @@
             "required": true
           }
         },
-        "type": "WPConnector",
+        "type": "WordpressConnector",
         "methodName": "update"
       },
       "deleteWPConnector": {
@@ -66,14 +66,14 @@
             "required": true
           }
         },
-        "type": "WPConnector",
+        "type": "WordpressConnector",
         "methodName": "delete"
       }
     },
     "connector": {
       "type": "CloudGDS",
       "configs": {
-        "kind": "WPConnector",
+        "kind": "WordpressConnector",
         "excludeFromIndexes": [
           "jsonModel"
         ],
