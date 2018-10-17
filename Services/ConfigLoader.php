@@ -38,7 +38,7 @@ class ConfigLoader
                 $wpConnectorDef["postPipeline"]=["RedisCache\\RedisCache"];
                 $wpConnectorDef["redisCacheHost"]=getenv("redisCacheHost") ? getenv("redisCacheHost") : "redis";
             }
-            $wpConnectorDef["connectorClass"]="App\\Extensions\\WordpressConnector\\Alambic\\Connectors\\WordPressConnector";
+            $wpConnectorDef["connectorClass"]="App\\Extensions\\WordpressConnector\\Alambic\\Connectors\\WordpressConnector";
             $alambicConfig["alambicConnectors"][$wpConnectorDef["name"]]=$wpConnectorDef;
         }
 
