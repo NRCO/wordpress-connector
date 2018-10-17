@@ -4,7 +4,7 @@ use Alambic\Exception\ConnectorArgs;
 use Alambic\Exception\ConnectorConfig;
 use Alambic\Exception\ConnectorInternal;
 use GuzzleHttp\Client as Client;
-class WordPressConnector extends \Alambic\Connector\AbstractConnector
+class WordpressConnector extends \Alambic\Connector\AbstractConnector
 {
     protected $client;
 
