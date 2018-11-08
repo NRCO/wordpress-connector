@@ -46,7 +46,7 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
               'verify' => false
             ]);
             $result=json_decode($res->getBody()->getContents(),true);
-            $payload["response"]=$result;
+            $payload["response"]= (!empty($result)) ? $result : null;
             return $payload;
         }
     }
