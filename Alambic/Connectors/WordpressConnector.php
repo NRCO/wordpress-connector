@@ -7,6 +7,7 @@ use GuzzleHttp\Client as Client;
 class WordpressConnector extends \Alambic\Connector\AbstractConnector
 {
     protected $client;
+    protected $limit = 10;
 
     public function __invoke($payload=[])
     {
@@ -30,7 +31,11 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
             $res = $this->client->request('GET',$this->config["host"]."/".$this->config["segment"],[
               'http_errors' => false,
               'verify' => false,
-              'query' => ['filters' => $filters]
+              'query' => [
+                'filters' => $filters,
+                'limit' => $this->limit,
+                'start' => $this->start
+              ]
             ]);
             $result=json_decode($res->getBody()->getContents(),true);
             $payload["response"]=$result["items"];
