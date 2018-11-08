@@ -21,7 +21,6 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
     }
 
     public function resolve($payload=[]){
-
         if ($this->multivalued) {
             if ($this->filters) {
                 $filters = json_encode($this->filters);
@@ -42,9 +41,23 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
             return $payload;
 
         } else {
-            throw new ConnectorInternal("WIP");
+            $res = $this->client->request('GET',$this->config["host"]."/".$this->injectArgsInSegment($this->args, $this->config["detailSegment"]),[
+              'http_errors' => false,
+              'verify' => false
+            ]);
+            $result=json_decode($res->getBody()->getContents(),true);
+            $payload["response"]=$result["items"];
+            return $payload;
         }
+    }
 
+    private function injectArgsInSegment(&$args, $segment) {
+        foreach($args as $key => $value) {
+            $segment = str_replace("{".$key."}", $value, $segment, $count);
+            if ($count>0) unset($args[$key]);
+        }
+        $segment = preg_replace("/\{[^}]+\}/","",$segment);
+        return $segment;
     }
 
     public function execute($payload=[]){
