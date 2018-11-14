@@ -34,8 +34,8 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
                 'filters' => $filters,
                 'limit' => $this->limit,
                 'start' => $this->start,
-                'orderby' => $this->orderBy,
-                'order' => $this->orderByDirection
+                'orderBy' => $this->orderBy,
+                'orderByDirection' => $this->orderByDirection
               ]
             ]);
             $result=json_decode($res->getBody()->getContents(),true);
