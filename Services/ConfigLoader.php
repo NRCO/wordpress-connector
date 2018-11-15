@@ -29,6 +29,7 @@ class ConfigLoader
                     if(isset($model["connector"]["type"])){
                         $model["connector"]["type"]=$wpConnectorDef["name"];
                     }
+                    $model["sourceTypeLabel"] = "WordPress";
                 }
                 $alambicConfig["alambicTypeDefs"] = array_merge($alambicConfig["alambicTypeDefs"] , $decodedModel);
                 unset($wpConnectorDef["jsonModel"]);
