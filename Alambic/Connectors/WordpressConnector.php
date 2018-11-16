@@ -27,16 +27,21 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
             } else {
                 $filters = [];
             }
-            $res = $this->client->request('GET',$this->config["host"]."/".$this->config["segment"],[
-              'http_errors' => false,
-              'verify' => false,
-              'query' => [
+            $query = [
                 'filters' => $filters,
                 'limit' => $this->limit,
                 'start' => $this->start,
                 'orderBy' => $this->orderBy,
                 'orderByDirection' => $this->orderByDirection
-              ]
+            ];
+            foreach ($this->args as $arg) {
+                list($key, $value) = each($arg);
+                $query[$key] = $value;
+            }
+            $res = $this->client->request('GET',$this->config["host"]."/".$this->config["segment"],[
+              'http_errors' => false,
+              'verify' => false,
+              'query' => $query
             ]);
             $result=json_decode($res->getBody()->getContents(),true);
             $payload["response"]=$result["items"];
