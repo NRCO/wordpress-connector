@@ -34,8 +34,7 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
                 'orderBy' => $this->orderBy,
                 'orderByDirection' => $this->orderByDirection
             ];
-            foreach ($this->args as $arg) {
-                list($key, $value) = each($arg);
+            foreach ($this->args as $key => $value) {
                 $query[$key] = $value;
             }
             $res = $this->client->request('GET',$this->config["host"]."/".$this->config["segment"],[
