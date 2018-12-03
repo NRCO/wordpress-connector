@@ -29,7 +29,7 @@ class MenuBuilder
             $menuData = app()['AdminGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}',null,null);
         //}
         var_dump($menuData);
-        $component["pageTree"]=$menuData["data"]["page"];
+        $component["pageTree"]=$menuData["data"]["wp_pages"];
         $isSecure=$component["context"]["scheme"]=="https";
         $routeBuilder=app()["RouteBuilder"];
         $component["pageTree"]["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$root,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
