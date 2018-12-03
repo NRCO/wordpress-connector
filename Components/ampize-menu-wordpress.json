@@ -4,7 +4,7 @@
     "isRootElement":true,
     "isUnique":true,
     "templatePath":"components.ampize-menu-wordpress",
-    "refinerPipeline":["App\\Extensions\\WordpressConnector\\Services\\Components\\Middleware\\WordPressMenuBuilder","App\\Services\\Components\\Middleware\\Search","App\\Services\\Components\\Middleware\\ImageAutoSizer"],
+    "refinerPipeline":["App\\Extensions\\WordpressConnector\\Services\\Components\\Middleware\\MenuBuilder","App\\Services\\Components\\Middleware\\Search","App\\Services\\Components\\Middleware\\ImageAutoSizer"],
     "category":"Navigation",
     "icon":"mdi-menu",
     "name":"WordPress Menu",
