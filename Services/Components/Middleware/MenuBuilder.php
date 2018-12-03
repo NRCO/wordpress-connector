@@ -43,6 +43,7 @@ class MenuBuilder
             $page["active"] = $component['context']['page']['id'] == $page['id'];
         }
         $component["pageTree"]["url"]="/";
+        $component["pageTree"]["name"]="Home";
 
         return $component;
     }

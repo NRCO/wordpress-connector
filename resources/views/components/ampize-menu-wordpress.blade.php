@@ -13,18 +13,6 @@
             @foreach ($component['pageTree']['children'] as $page)
                 <div class="flex ampize-menu-tab @if (!empty($page["active"])) active @endif">
                     <a href="[[ $page['url'] ]]">[[ $page['name'] ]]</a>
-                    @if (!empty($page['children']))
-                        <div class="ampize-menu-tab-list">
-                            <div class="ampize-menu-tab-list-shadow"></div>
-                            <ul>
-                                @foreach ($page['children'] as $subPage)
-                                    <li>
-                                        <a href="[[ $subPage['url'] ]]">[[ $subPage['name'] ]]</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                 </div>
             @endforeach
         </div>
@@ -87,4 +75,3 @@
         </form>
     </div>
 </amp-sidebar>
-
