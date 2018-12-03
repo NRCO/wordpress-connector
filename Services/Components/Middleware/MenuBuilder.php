@@ -28,6 +28,7 @@ class MenuBuilder
         } else {
             $menuData = app()['AdminGraphQLHandler']->execute('query q{wp_page(isRoot:"true"){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC",excludeFromMenu:false){name order id parentId}}}',null,null);
         }
+        var_dump($menuData);
         $component["pageTree"]=$menuData["data"]["page"];
         $isSecure=$component["context"]["scheme"]=="https";
         $routeBuilder=app()["RouteBuilder"];
