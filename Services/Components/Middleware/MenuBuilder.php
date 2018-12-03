@@ -40,7 +40,7 @@ class MenuBuilder
         }
         foreach ($component["pageTree"] as &$page){
             var_dump($page);
-            $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
+            //$page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
             $page["active"] = $component['context']['page']['id'] == $page['id'];
             if(!empty($page["children"])){
                 foreach($page["children"] as &$subpage){
@@ -48,7 +48,7 @@ class MenuBuilder
                         $page["active"] = $component['context']['page']['id'] == $subpage['id'];
                     }
                     $subpage["active"] = $component['context']['page']['id'] == $subpage['id'];
-                    $subpage["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$subpage["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
+                    //$subpage["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$subpage["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
                 }
             }
         }
