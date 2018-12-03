@@ -38,6 +38,8 @@ class MenuBuilder
                 $imageBackgroundCss :
                 $component['context']['page']['cssCode'] . $imageBackgroundCss;
         }
+        var_dump($component["pageTree"]);
+        die();
         foreach ($component["pageTree"] as &$page){
             var_dump($page);
             //$page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
