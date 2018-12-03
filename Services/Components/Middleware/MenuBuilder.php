@@ -41,7 +41,8 @@ class MenuBuilder
                 $imageBackgroundCss :
                 $component['context']['page']['cssCode'] . $imageBackgroundCss;
         }
-        foreach ($component["pageTree"] as &$page){
+        foreach ($component["pageTree"]["children"] as &$page){
+            var_dump($page);
             $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
             $page["active"] = $component['context']['page']['id'] == $page['id'];
             if(!empty($page["children"])){
