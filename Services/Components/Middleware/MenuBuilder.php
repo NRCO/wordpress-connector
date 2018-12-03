@@ -23,11 +23,11 @@ class MenuBuilder
             $menuData = app()['AdminGraphQLHandler']->execute('query q{page(siteId:"'.$component["context"]["site"]["id"].'",id:"'.$root.'"){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}',null,null);
         }
         */
-        if(isset($component["itemConfig"]["settings"]["baseLevel"])&&$component["itemConfig"]["settings"]["baseLevel"]==2){
-            $menuData = app()['AdminGraphQLHandler']->execute('query q{wp_page(isRoot:true){name id children(orderBy:"order",orderByDirection:"ASC",excludeFromMenu:false){name order id parentId children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}}',null,null);
-        } else {
-            $menuData = app()['AdminGraphQLHandler']->execute('query q{wp_page(isRoot:"true"){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC",excludeFromMenu:false){name order id parentId}}}',null,null);
-        }
+        //if(isset($component["itemConfig"]["settings"]["baseLevel"])&&$component["itemConfig"]["settings"]["baseLevel"]==2){
+        //    $menuData = app()['AdminGraphQLHandler']->execute('query q{wp_page(isRoot:true){name id children(orderBy:"order",orderByDirection:"ASC",excludeFromMenu:false){name order id parentId children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}}',null,null);
+        //} else {
+            $menuData = app()['AdminGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}',null,null);
+        //}
         var_dump($menuData);
         $component["pageTree"]=$menuData["data"]["page"];
         $isSecure=$component["context"]["scheme"]=="https";
