@@ -28,7 +28,7 @@ class MenuBuilder
         //} else {
             $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}',null,null);
         //}
-        var_dump("Site Id: ".$component["context"]["site"]["id");
+        var_dump("Site Id: ".$component["context"]["site"]["id"]);
         var_dump("Root: ".$root);
         var_dump($menuData);
         $component["pageTree"]=$menuData["data"]["wp_pages"];
