@@ -32,7 +32,6 @@ class MenuBuilder
         $isSecure=$component["context"]["scheme"]=="https";
         $routeBuilder=app()["RouteBuilder"];
         //$component["pageTree"]["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$root,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
-        $component["pageTree"]["url"]="/";
         if (!empty($component['itemConfig']['settings']['imageURL'])) {
             $imageBackgroundCss = ' .ampize-menu-logo {background-image: url(' . $component['itemConfig']['settings']['imageURL'] . ')}';
             $component['context']['page']['cssCode'] = empty($component['context']['page']['cssCode']) ?
