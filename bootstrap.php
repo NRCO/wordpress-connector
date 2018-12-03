@@ -1,5 +1,5 @@
 <?php
-
+    view()->addLocation(realpath(__DIR__.'/resources/views'));
     $otherConfigurators=config("alambicConfigurators");
     if(empty($otherConfigurators)){
         $otherConfigurators=[];
@@ -15,6 +15,8 @@
     $boExtraScripts = !empty(config("boExtraScripts")) ? array_merge(config("boExtraScripts"), $wpBoExtraScripts) : $wpBoExtraScripts;
     $boExtraStyles = !empty(config("boExtraStyles")) ? array_merge(config("boExtraStyles"), $wpBoExtraStyles) : $wpBoExtraStyles;
     $boExtraModules = !empty(config("boExtraModules")) ? array_merge(config("boExtraModules"), $wpBoExtraModules) : $wpBoExtraModules;
+    $ampizeComponentConfigPaths = config("ampizeComponentConfigPaths");
+    $ampizeComponentConfigPaths[] = realpath(__DIR__ . '/Components');
     $app->register(App\Extensions\WordpressConnector\Providers\WPProvider::class);
     config([
         "boExtraScripts" => $boExtraScripts,
@@ -23,6 +25,7 @@
         "alambicConfigurators" => $otherConfigurators,
         "adminAlambicConfigPaths"=>$adminConfigPaths,
         "dataAlambicConfigPaths"=>$dataConfigPaths,
+        "ampizeComponentConfigPaths" => $ampizeComponentConfigPaths,
         "resourceNamespaces.wp"=>[
             "path"=>realpath(__DIR__.'/resources/wp/')
         ],

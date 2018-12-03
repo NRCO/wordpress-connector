@@ -1,0 +1,47 @@
+{
+  "ampize-menu-wordpress":{
+    "type":"ampize-menu-wordpress",
+    "isRootElement":true,
+    "isUnique":true,
+    "templatePath":"components.ampize-menu-wordpress",
+    "refinerPipeline":["App\\Extensions\\WordpressConnector\\Services\\Components\\Middleware\\WordPressMenuBuilder","App\\Services\\Components\\Middleware\\Search","App\\Services\\Components\\Middleware\\ImageAutoSizer"],
+    "category":"Navigation",
+    "icon":"mdi-menu",
+    "name":"WordPress Menu",
+    "defaultConfig":{
+      "settings":{
+        "xxx":"xxx",
+      }
+    },
+    "widgets":{
+      "settings":{
+        "docsUrl":"https://ampize.me/docs/components/wordpress-menu/",
+        "abTesting": false,
+        "includeLayout":false,
+        "noSizeParams":true,
+        "fields":{
+          "imageURL": {
+            "type": "ImageURL",
+            "label": "Logo Url"
+          },
+          "displayRoot": {
+            "type": "Boolean",
+            "label":"Display root"
+          },
+          "pageId": {
+            "type": "PageId",
+            "label": "Search page"
+          },
+          "key": {
+            "type": "String",
+            "label": "Search key"
+          },
+          "placeholder": {
+            "type": "String",
+            "label": "Search placeholder"
+          }
+        }
+      }
+    }
+  }
+}
