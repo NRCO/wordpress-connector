@@ -7,15 +7,15 @@ class MenuBuilder
 {
     public function __invoke($component)
     {
-        /*
+
         $root=$component["context"]["page"]["id"];
         if(!empty($component["itemConfig"]["settings"]["root"])){
             $root=$component["itemConfig"]["settings"]["root"];
         } else if (isset($component["itemConfig"]["settings"]["fallbackRoot"])&&$component["itemConfig"]["settings"]["fallbackRoot"]=="parent"&&isset($component["context"]["page"]["parentId"])&&$component["context"]["page"]["parentId"]!="root"){
             $root=$component["context"]["page"]["parentId"];
         }
-        */
-        $root= "id de la home ampize";
+
+        //$root= "id de la home ampize";
         /*
         if(isset($component["itemConfig"]["settings"]["baseLevel"])&&$component["itemConfig"]["settings"]["baseLevel"]==2){
             $menuData = app()['AdminGraphQLHandler']->execute('query q{page(siteId:"'.$component["context"]["site"]["id"].'",id:"'.$root.'"){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}}',null,null);
@@ -28,6 +28,8 @@ class MenuBuilder
         //} else {
             $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}',null,null);
         //}
+        var_dump("Site Id: ".$component["context"]["site"]["id");
+        var_dump("Root: ".$root);
         var_dump($menuData);
         $component["pageTree"]=$menuData["data"]["wp_pages"];
         $isSecure=$component["context"]["scheme"]=="https";
