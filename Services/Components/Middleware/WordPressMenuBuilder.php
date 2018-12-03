@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Components\Middleware;
+namespace App\Extensions\WordpressConnector\Services\Components\Middleware;
 
 
 class MenuBuilder
