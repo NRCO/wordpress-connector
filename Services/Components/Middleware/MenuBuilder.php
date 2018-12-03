@@ -31,29 +31,19 @@ class MenuBuilder
         $component["pageTree"]=$menuData["data"]["wp_pages"];
         $isSecure=$component["context"]["scheme"]=="https";
         $routeBuilder=app()["RouteBuilder"];
-        $component["pageTree"]["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$root,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
+        //$component["pageTree"]["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$root,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
+        $component["pageTree"]["url"]="/";
         if (!empty($component['itemConfig']['settings']['imageURL'])) {
             $imageBackgroundCss = ' .ampize-menu-logo {background-image: url(' . $component['itemConfig']['settings']['imageURL'] . ')}';
             $component['context']['page']['cssCode'] = empty($component['context']['page']['cssCode']) ?
                 $imageBackgroundCss :
                 $component['context']['page']['cssCode'] . $imageBackgroundCss;
         }
-        var_dump($component["pageTree"]);
-        die();
         foreach ($component["pageTree"] as &$page){
-            var_dump($page);
-            //$page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
+            $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
             $page["active"] = $component['context']['page']['id'] == $page['id'];
-            if(!empty($page["children"])){
-                foreach($page["children"] as &$subpage){
-                    if (empty($page["active"])) {
-                        $page["active"] = $component['context']['page']['id'] == $subpage['id'];
-                    }
-                    $subpage["active"] = $component['context']['page']['id'] == $subpage['id'];
-                    //$subpage["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$subpage["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
-                }
-            }
         }
+        $component["pageTree"]["url"]="/";
 
         return $component;
     }
