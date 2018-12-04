@@ -1,7 +1,7 @@
 <?php
 namespace App\Extensions\WordpressConnector\Providers;
 use App\Extensions\WordpressConnector\Services\ConfigLoader;
-use App\Extensions\WordpressConnector\Services\Routebuilder;
+use App\Extensions\WordpressConnector\Services\RouteBuilder;
 use Illuminate\Support\ServiceProvider;
 class WPProvider extends ServiceProvider
 {
