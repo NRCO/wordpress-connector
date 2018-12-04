@@ -8,6 +8,7 @@ class MenuBuilder
     public function __invoke($component)
     {
         $root=$component["context"]["page"]["id"];
+        $isSecure=$component["context"]["scheme"]=="https";
         if(!empty($component["itemConfig"]["settings"]["root"])){
             $root=$component["itemConfig"]["settings"]["root"];
         } else if (isset($component["itemConfig"]["settings"]["fallbackRoot"])&&$component["itemConfig"]["settings"]["fallbackRoot"]=="parent"&&isset($component["context"]["page"]["parentId"])&&$component["context"]["page"]["parentId"]!="root"){
