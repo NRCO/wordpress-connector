@@ -17,9 +17,13 @@ class RouteBuilder
         }
         $this->sites[$siteId]=$siteData["data"]["site"];
     }
-    public function getRoute($siteId,$pageId=null,$secure=true,$previewMode=false,$baseUrl=""){
+    public function getRoute($siteId,$pageId=null,$secure=true,$previewMode=false,$baseUrl="",$urlSegment=""){
         if($previewMode){
-            return config("accessToken") ? $baseUrl.'?pageId='.$pageId.'&siteId='.$siteId.'&access_token='.config("accessToken") : $baseUrl.'?pageId='.$pageId.'&siteId='.$siteId;
+            $url = config("accessToken") ? $baseUrl.'?pageId='.$pageId.'&siteId='.$siteId.'&access_token='.config("accessToken") : $baseUrl.'?pageId='.$pageId.'&siteId='.$siteId;
+            if ($urlSegment!="") {
+                $url.="&urlSegment=".$urlSegment;
+            }
+            return $url;
         }
         if(!isset($this->sites[$siteId])){
             $this->loadSiteData($siteId);
