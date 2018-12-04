@@ -37,6 +37,7 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
             foreach ($this->args as $key => $value) {
                 $query[$key] = $value;
             }
+            var_dump($query);
             $res = $this->client->request('GET',$this->config["host"]."/".$this->config["segment"],[
               'http_errors' => false,
               'verify' => false,
