@@ -41,23 +41,31 @@ class MenuBuilder
                 $component['context']['page']['cssCode'] . $imageBackgroundCss;
         }
         foreach ($menuData["data"]["wp_pages"] as $page){
-            switch($page["type"]) {
-                case "list":
-                    $destinationPage = 
-            }$destinationPage = type urlSegment
-            $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
+            $destinationPage = $this->getDestinationPage($page, $component['itemConfig']['settings']);
+            $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$destinationPage,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
             $page["active"] = $component['context']['page']['id'] == $page['id'];
             foreach ($page["children"] as &$subpage) {
+                $destinationPage = $this->getDestinationPage($subpage, $component['itemConfig']['settings']);
                 $subpage["url"] = $routeBuilder->getRoute($component["context"]["site"]["id"],$subpage["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
             }
             $component["pageTree"]["children"][] = $page;
         }
-
-        var_dump($component["pageTree"]);
-
         return $component;
     }
 
-
+    private function getDestinationPage($page, $componentSettings) {
+        switch($page["type"]) {
+            case "list":
+                $destinationPage = $componentSettings['listPage'];
+                break;
+            case "item":
+                $destinationPage = $componentSettings['detailPage'];
+                break;
+            default:
+                $destinationPage = NULL;
+                break;
+        }
+        return $destinationPage;
+    }
 
 }
