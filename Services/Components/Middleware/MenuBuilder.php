@@ -45,9 +45,6 @@ class MenuBuilder
             $page["active"] = $component['context']['page']['id'] == $page['id'];
             $component["pageTree"]["children"][] = $page;
         }
-
-        var_dump($component["pageTree"]);
-        die();
         return $component;
     }
 
