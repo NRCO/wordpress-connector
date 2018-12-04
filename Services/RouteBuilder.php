@@ -7,7 +7,7 @@ class RouteBuilder
         $siteData=app()['AdminGraphQLHandler']->execute('query q{site(id:"'.$siteId.'"){name homePageId id host pages(limit:10000){id name parentId segment customSegment vanityUrl}}}',null,null);
         if(empty($siteData["data"]["site"])){
             return null;
-        }
+        }DEBUG
         if(!empty($siteData["data"]["site"]["pages"])){
             $keyArray=[];
             foreach($siteData["data"]["site"]["pages"] as $sitePage){
