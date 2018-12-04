@@ -43,6 +43,9 @@ class MenuBuilder
         foreach ($menuData["data"]["wp_pages"] as $page){
             $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
             $page["active"] = $component['context']['page']['id'] == $page['id'];
+            foreach ($page["children"] as &$subpage) {
+                $subpage["url"] = $routeBuilder->getRoute($component["context"]["site"]["id"],$subpage["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
+            }
             $component["pageTree"]["children"][] = $page;
         }
 
