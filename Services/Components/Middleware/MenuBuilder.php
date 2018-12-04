@@ -28,8 +28,10 @@ class MenuBuilder
         //} else {
             $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}',null,null);
         //}
-        $component["pageTree"]=$menuData["data"]["wp_pages"];
-        $isSecure=$component["context"]["scheme"]=="https";
+        //$component["pageTree"]=$menuData["data"]["wp_pages"];
+        //$isSecure=$component["context"]["scheme"]=="https";
+        $component["pageTree"]["url"]="/";
+        $component["pageTree"]["name"]="Home";
         $routeBuilder=app()["RouteBuilder"];
         //$component["pageTree"]["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$root,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
         if (!empty($component['itemConfig']['settings']['imageURL'])) {
@@ -38,13 +40,12 @@ class MenuBuilder
                 $imageBackgroundCss :
                 $component['context']['page']['cssCode'] . $imageBackgroundCss;
         }
-        foreach ($component["pageTree"] as $page){
+        foreach ($menuData["data"]["wp_pages"] as $page){
             $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
             $page["active"] = $component['context']['page']['id'] == $page['id'];
             $component["pageTree"]["children"][] = $page;
         }
-        $component["pageTree"]["url"]="/";
-        $component["pageTree"]["name"]="Home";
+
         var_dump($component["pageTree"]);
         die();
         return $component;
