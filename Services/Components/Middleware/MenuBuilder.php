@@ -33,7 +33,6 @@ class MenuBuilder
             }
             $component["pageTree"]["children"][] = $page;
         }
-        var_dump($component);
         return $component;
     }
 
@@ -43,7 +42,7 @@ class MenuBuilder
                 $destinationPage = $componentSettings['listPage'];
                 break;
             case "item":
-                $destinationPage = $componentSettings['detailPage']."/".$page["id"];
+                $destinationPage = $componentSettings['detailPage']."&id=".$page["id"];
                 break;
             default:
                 $destinationPage = NULL;
