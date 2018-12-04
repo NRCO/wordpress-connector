@@ -2,7 +2,6 @@
 
 namespace App\Extensions\WordpressConnector\Services\Components\Middleware;
 
-
 class MenuBuilder
 {
     public function __invoke($component)
@@ -30,7 +29,7 @@ class MenuBuilder
             $page["active"] = $component['context']['page']['id'] == $page['id'];
             foreach ($page["children"] as &$subpage) {
                 $destinationPage = $this->getDestinationPage($subpage, $component['itemConfig']['settings']);
-                $subpage["url"] = $routeBuilder->getRoute($component["context"]["site"]["id"],$subpage["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl'],$page["urlSegment"]);
+                $subpage["url"] = $routeBuilder->getRoute($component["context"]["site"]["id"],$subpage["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl'],$subpage["urlSegment"]);
             }
             $component["pageTree"]["children"][] = $page;
         }
