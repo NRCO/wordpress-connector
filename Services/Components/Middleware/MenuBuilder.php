@@ -22,7 +22,7 @@ class MenuBuilder
                 $component['context']['page']['cssCode'] . $imageBackgroundCss;
         }
         $routeBuilder=app()["WPRouteBuilder"];
-        $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id type urlSegment children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId type urlSegment}}}',null,null);
+        $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id type urlSegment itemId children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId itemId type urlSegment}}}',null,null);
         foreach ($menuData["data"]["wp_pages"] as $page){
             $destinationPage = $this->getDestinationPage($page, $component['itemConfig']['settings']);
             $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$destinationPage,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl'],$page["urlSegment"]);
