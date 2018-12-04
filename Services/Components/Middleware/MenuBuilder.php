@@ -42,7 +42,7 @@ class MenuBuilder
                 $destinationPage = $componentSettings['listPage'];
                 break;
             case "item":
-                $destinationPage = $componentSettings['detailPage']."&id=".$page["id"];
+                $destinationPage = $componentSettings['detailPage']."&id=".$page["itemId"];
                 break;
             default:
                 $destinationPage = NULL;
