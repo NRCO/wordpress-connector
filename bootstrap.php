@@ -18,6 +18,9 @@
     $ampizeComponentConfigPaths = config("ampizeComponentConfigPaths");
     $ampizeComponentConfigPaths[] = realpath(__DIR__ . '/Components');
     $app->register(App\Extensions\WordpressConnector\Providers\WPProvider::class);
+    $app->routeMiddleware([
+        'routeResolver' => App\Extensions\WordpressConnector\Middleware\WPRouteResolver::class,
+    ]);
     config([
         "boExtraScripts" => $boExtraScripts,
         "boExtraStyles" => $boExtraStyles,
@@ -33,3 +36,9 @@
     $app->group(['namespace' => 'App\Extensions\WordpressConnector\Controllers'], function ($app) {
       $app->get('/api/admin/wp/introspect', "WordpressController@introspect");
     });
+/*
+    if(!isset($app->getRoutes()["GET/{path:.*}"])){
+        $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
+        $app->get('/{path:.*}', ['middleware' => 'WPRouteResolver',"uses"=>"MainFrontController@render"]);
+    });
+*/
