@@ -26,7 +26,7 @@ class MenuBuilder
         //if(isset($component["itemConfig"]["settings"]["baseLevel"])&&$component["itemConfig"]["settings"]["baseLevel"]==2){
         //    $menuData = app()['AdminGraphQLHandler']->execute('query q{wp_page(isRoot:true){name id children(orderBy:"order",orderByDirection:"ASC",excludeFromMenu:false){name order id parentId children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}}',null,null);
         //} else {
-            $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}',null,null);
+            $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id type urlSegment children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId type urlSegment}}}',null,null);
         //}
         //$component["pageTree"]=$menuData["data"]["wp_pages"];
         $isSecure=$component["context"]["scheme"]=="https";
@@ -41,6 +41,10 @@ class MenuBuilder
                 $component['context']['page']['cssCode'] . $imageBackgroundCss;
         }
         foreach ($menuData["data"]["wp_pages"] as $page){
+            switch($page["type"]) {
+                case "list":
+                    $destinationPage = 
+            }$destinationPage = type urlSegment
             $page["url"]=$routeBuilder->getRoute($component["context"]["site"]["id"],$page["id"],$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl']);
             $page["active"] = $component['context']['page']['id'] == $page['id'];
             foreach ($page["children"] as &$subpage) {

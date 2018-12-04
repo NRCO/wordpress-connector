@@ -9,10 +9,6 @@
     "icon":"mdi-menu",
     "requiredForRender": ["detailPage", "listPage"],
     "name":"WordPress Menu",
-    "defaultConfig":{
-      "settings":{
-      }
-    },
     "widgets":{
       "settings":{
         "docsUrl":"https://ampize.me/docs/components/wordpress-menu/",
