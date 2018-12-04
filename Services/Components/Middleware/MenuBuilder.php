@@ -29,7 +29,7 @@ class MenuBuilder
             $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId}}}',null,null);
         //}
         //$component["pageTree"]=$menuData["data"]["wp_pages"];
-        //$isSecure=$component["context"]["scheme"]=="https";
+        $isSecure=$component["context"]["scheme"]=="https";
         $component["pageTree"]["url"]="/";
         $component["pageTree"]["name"]="Home";
         $routeBuilder=app()["RouteBuilder"];
