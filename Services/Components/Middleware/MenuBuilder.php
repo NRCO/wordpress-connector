@@ -33,6 +33,7 @@ class MenuBuilder
             }
             $component["pageTree"]["children"][] = $page;
         }
+        var_dump($component);
         return $component;
     }
 

@@ -18,7 +18,6 @@ class RouteBuilder
         $this->sites[$siteId]=$siteData["data"]["site"];
     }
     public function getRoute($siteId,$pageId=null,$secure=true,$previewMode=false,$baseUrl="",$urlSegment=""){
-        var_dump($urlSegment);
         if($previewMode){
             $url = config("accessToken") ? $baseUrl.'?pageId='.$pageId.'&siteId='.$siteId.'&access_token='.config("accessToken") : $baseUrl.'?pageId='.$pageId.'&siteId='.$siteId;
             if ($urlSegment!="") {
