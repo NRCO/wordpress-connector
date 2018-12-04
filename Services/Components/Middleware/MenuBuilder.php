@@ -29,7 +29,7 @@ class MenuBuilder
             $page["active"] = $component['context']['page']['id'] == $page['id'];
             foreach ($page["children"] as &$subpage) {
                 $destinationPage = $this->getDestinationPage($subpage, $component['itemConfig']['settings']);
-                $subpage["url"] = $routeBuilder->getRoute($component["context"]["site"]["id"],$destinationPage,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl'],$subpage["urlSegment"],$page["itemId"]);
+                $subpage["url"] = $routeBuilder->getRoute($component["context"]["site"]["id"],$destinationPage,$isSecure,$component["context"]['previewMode'],$component["context"]['baseUrl'],$subpage["urlSegment"],$subpage["itemId"]);
             }
             $component["pageTree"]["children"][] = $page;
         }
