@@ -22,7 +22,7 @@ class RouteBuilder
         if($previewMode){
             $url = config("accessToken") ? $baseUrl.'?pageId='.$pageId.'&siteId='.$siteId.'&access_token='.config("accessToken") : $baseUrl.'?pageId='.$pageId.'&siteId='.$siteId;
             if ($urlSegment!="") {
-                $url.="&urlSegment=".$urlSegment;
+                $url.="&url=".$urlSegment;
             }
             return $url;
         }
