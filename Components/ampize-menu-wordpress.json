@@ -7,6 +7,7 @@
     "refinerPipeline":["App\\Extensions\\WordpressConnector\\Services\\Components\\Middleware\\MenuBuilder","App\\Services\\Components\\Middleware\\Search","App\\Services\\Components\\Middleware\\ImageAutoSizer"],
     "category":"Navigation",
     "icon":"mdi-menu",
+    "requiredForRender": ["detailPage", "listPage"],
     "name":"WordPress Menu",
     "defaultConfig":{
       "settings":{
@@ -26,6 +27,14 @@
           "displayRoot": {
             "type": "Boolean",
             "label":"Display root"
+          },
+          "detailPage": {
+            "type": "PageId",
+            "label":"Detail page"
+          },
+          "listPage": {
+            "type": "PageId",
+            "label":"Category page"
           },
           "pageId": {
             "type": "PageId",
