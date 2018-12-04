@@ -21,7 +21,7 @@ class MenuBuilder
                 $imageBackgroundCss :
                 $component['context']['page']['cssCode'] . $imageBackgroundCss;
         }
-        $routeBuilder=app()["RouteBuilder"];
+        $routeBuilder=app()["WPRouteBuilder"];
         $menuData = app()['DataGraphQLHandler']->execute('query q{wp_pages(parentId:0){name id type urlSegment children(limit:1000,orderBy:"order",orderByDirection:"ASC"){name order id parentId type urlSegment}}}',null,null);
         foreach ($menuData["data"]["wp_pages"] as $page){
             $destinationPage = $this->getDestinationPage($page, $component['itemConfig']['settings']);
