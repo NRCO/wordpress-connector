@@ -45,7 +45,8 @@ class MenuBuilder
         }
         $component["pageTree"]["url"]="/";
         $component["pageTree"]["name"]="Home";
-        var_dump($component);
+        var_dump($component["pageTree"]);
+        die();
         return $component;
     }
 
