@@ -18,9 +18,12 @@
     $ampizeComponentConfigPaths = config("ampizeComponentConfigPaths");
     $ampizeComponentConfigPaths[] = realpath(__DIR__ . '/Components');
     $app->register(App\Extensions\WordpressConnector\Providers\WPProvider::class);
+    $app->post('/admin/publish-site',['middleware' => ['configLoader'], "uses"=>'App\Extensions\AmpizeCloud\Controllers\PublishingController@publishSite']);
+    /*
     $app->routeMiddleware([
         'routeResolver' => App\Extensions\WordpressConnector\Middleware\WPRouteResolver::class,
     ]);
+    */
     config([
         "boExtraScripts" => $boExtraScripts,
         "boExtraStyles" => $boExtraStyles,
