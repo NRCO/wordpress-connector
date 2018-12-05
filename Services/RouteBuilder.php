@@ -24,7 +24,7 @@ class RouteBuilder
                 $url.="&url=".$urlSegment;
             }
             if ($itemId) {
-                $url.="&id=".$itemId;
+                $url.="&detailId=".$itemId;
             }
             return $url;
         }
