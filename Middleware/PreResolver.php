@@ -26,7 +26,7 @@ class PreResolver
                 }
                 if($hasMatch){
                     $input=$request->input();
-                    $uri=$routeRedirect["path"];
+                    $uri="https://".$request->getHost().$routeRedirect["path"];
                     if($routeRedirect["redirectType"]=="asParam"){
                         $input[$routeRedirect["redirectParam"]]=$path;
                     } elseif ($routeRedirect["redirectType"]=="asDetailSegment"){
