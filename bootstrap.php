@@ -45,3 +45,28 @@
         $app->get('/{path:.*}', ['middleware' => 'WPRouteResolver',"uses"=>"MainFrontController@render"]);
     });
 */
+$authorizedDomains=[
+    "tmv.ampize.me"
+];
+if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDomains)){
+    $app->routeMiddleware([
+        'preResolver' => App\Extensions\WordpressConnector\Middleware\PreResolver::class,
+    ]);
+    config([
+        "latestRoutes" => [
+            [
+                "method" => "GET",
+                "uri" => "/{path:.*}",
+                "action" => ['middleware' => ['publicNS', 'configLoader', 'preResolver', 'routeResolver'], "uses" => "App\Http\Controllers\MainFrontController@render"]
+            ]
+        ],
+        "ampizeRouteRedirects"=>[
+            [
+                "patterns"=>["category\/*"],
+                "redirectType"=>"asParam",
+                "redirectParam"=>"url",
+                "path"=>"/home/news"
+            ]
+        ]
+    ]);
+}
