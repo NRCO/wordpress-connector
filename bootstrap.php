@@ -65,7 +65,7 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
                 "patterns"=>["/category\/*/"],
                 "redirectType"=>"asParam",
                 "redirectParam"=>"url",
-                "path"=>"/home/news"
+                "path"=>"/home/agenda"
             ]
         ]
     ]);
