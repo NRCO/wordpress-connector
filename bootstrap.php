@@ -62,7 +62,7 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
         ],
         "ampizeRouteRedirects"=>[
             [
-                "patterns"=>["/category\/*/"],
+                "patterns"=>["/category\/+/"],
                 "redirectType"=>"asParam",
                 "redirectParam"=>"url",
                 "path"=>"/category"
