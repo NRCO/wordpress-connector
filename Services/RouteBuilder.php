@@ -28,8 +28,9 @@ class RouteBuilder
             }
             return $url;
         }
+        $protocol=$secure ? 'https://' : 'http://';
         if ($urlSegment) {
-            $url = $baseUrl.$urlSegment;
+            $url = $protocol.$baseUrl.$urlSegment;
             return $url;
         }
         if(!isset($this->sites[$siteId])){
@@ -38,7 +39,6 @@ class RouteBuilder
         if(!$pageId){
             $pageId=$this->sites[$siteId]["homePageId"];
         }
-        $protocol=$secure ? 'https://' : 'http://';
         $domain=$this->sites[$siteId]["host"];
         if(!isset($this->sites[$siteId]["pages"][$pageId])){
             return null;
