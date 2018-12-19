@@ -28,6 +28,10 @@ class RouteBuilder
             }
             return $url;
         }
+        if ($urlSegment) {
+            $url = $baseUrl.$urlSegment;
+            return $url;
+        }
         if(!isset($this->sites[$siteId])){
             $this->loadSiteData($siteId);
         }
