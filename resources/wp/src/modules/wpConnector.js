@@ -23,7 +23,15 @@
                 }
             );
         };
-        me.refreshConnectors();
+        me.isAuthorized=false;
+        $http.get("/api/admin/nr/is-authorized").then(
+            function(response){
+                if (response.data.success) {
+                    me.isAuthorized=true;
+                    me.refreshConnectors();
+                }
+            }
+        );
         me.launchEditor=function(connectorName){
             $mdDialog.show({
                 templateUrl: '/resource/wp/templates/new-wp.html',
@@ -66,7 +74,15 @@
         var me=this;
         me.launchAdd=function(){
             window.launchWPAdd();
-        }
+        };
+        me.isAuthorized=false;
+        $http.get("/api/admin/nr/is-authorized").then(
+            function(response){
+                if (response.data.success) {
+                    me.isAuthorized=true;
+                }
+            }
+        );
     }]);
 
     module.controller("NewWPSourceController",["$scope","$http","$mdToast","$mdDialog","connectorName","nameBlacklist",function($scope,$http,$mdToast,$mdDialog,connectorName,nameBlacklist){
