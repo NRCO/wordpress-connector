@@ -29,6 +29,10 @@ class PreResolver
                     $uri="https://".$request->getHost().$routeRedirect["path"];
                     if($routeRedirect["redirectType"]=="asParam"){
                         $input[$routeRedirect["redirectParam"]]=$path;
+                        $explodedPath=explode('/',$path);
+                        if(!empty($explodedPath)){
+                            $input['categoryLabel']=ucfirst(array_pop($explodedPath));
+                        }
                     } elseif ($routeRedirect["redirectType"]=="asDetailSegment"){
                         $uri=$uri."/".urlencode(urlencode($path));
                     } else {
