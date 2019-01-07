@@ -81,7 +81,7 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
                     "path" => "/category"
                 ],
                 [
-                    "patterns" => ["/article\/+/"],
+                    "patterns" => ["/^article\/+/"],
                     "redirectType" => "asDetailSegment",
                     "path" => "/detail-article"
                 ]
