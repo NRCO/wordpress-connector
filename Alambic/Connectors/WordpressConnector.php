@@ -47,9 +47,6 @@ class WordpressConnector extends \Alambic\Connector\AbstractConnector
             return $payload;
 
         } else {
-            var_dump($this->args);
-            var_dump($this->config["host"]."/".$this->injectArgsInSegment($this->args, $this->config["detailSegment"]));
-            die("test");
             $res = $this->client->request('GET',$this->config["host"]."/".$this->injectArgsInSegment($this->args, $this->config["detailSegment"]),[
               'http_errors' => false,
               'verify' => false
