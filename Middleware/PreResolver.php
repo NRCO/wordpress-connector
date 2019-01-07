@@ -35,8 +35,6 @@ class PreResolver
                         }
                     } elseif ($routeRedirect["redirectType"]=="asDetailSegment"){
                         $uri=$uri."/".urlencode(urlencode($path));
-                        var_dump($uri);
-                        die("test");
                     } else {
                         abort(500,'Unknown redirect type');
                     }
