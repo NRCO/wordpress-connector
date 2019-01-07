@@ -79,6 +79,11 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
                     "redirectType" => "asParam",
                     "redirectParam" => "url",
                     "path" => "/category"
+                ],
+                [
+                    "patterns" => ["/detail\/+/"],
+                    "redirectType" => "asDetailSegment",
+                    "path" => "/detail-article"
                 ]
             ]
         ]);
