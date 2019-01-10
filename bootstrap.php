@@ -64,6 +64,7 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
     if (!empty($_SERVER["HTTP_HOST"]) && in_array($_SERVER["HTTP_HOST"], $customRouterDomains)) {
         $app->routeMiddleware([
             'preResolver' => App\Extensions\WordpressConnector\Middleware\PreResolver::class,
+            'routeResolver' => App\Extensions\WordpressConnector\Middleware\WPRouteResolver::class
         ]);
         config([
             "latestRoutes" => [

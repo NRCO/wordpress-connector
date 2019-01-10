@@ -30,6 +30,10 @@ class WPRouteResolver
                 }
             }
         }
+        $categoryLabel=$request->input("categoryLabel",null);
+        if(!empty($categoryLabel)){
+            $page["seoTitle"]=$categoryLabel;
+        }
         $request->merge([
             "currentSite"=> $site,
             "currentPage"=> $page,
@@ -38,6 +42,7 @@ class WPRouteResolver
         ]);
         return $next($request);
     }
+
     protected function buildRoutingQuery($pathArray,$siteId,$isFirst=false){
         $includedSegement="";
         $isLast=false;
@@ -55,7 +60,9 @@ class WPRouteResolver
         } else {
             return('children(siteId:"'.$siteId.'",segment:"'.$pathArray[0].'"){'.$includedSegement.'}');
         }
+
     }
+
     protected function resolvePage($path,$site){
         $page=null;
         if($path=="/"){
@@ -92,3 +99,4 @@ class WPRouteResolver
         return $page;
     }
 }
+
