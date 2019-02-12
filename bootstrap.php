@@ -2,6 +2,7 @@
 $authorizedDomains=[
     "cloud.ampize.me",
     "tmv.ampize.me",
+    "tmv-qual.nrco.fr",
     "ampize-qual.nrco.fr",
     "nramp-qual.nrco.fr",
     "m.lanouvellerepublique.fr",
