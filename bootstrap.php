@@ -2,6 +2,7 @@
 $authorizedDomains=[
     "cloud.ampize.me",
     "tmv.ampize.me",
+    "www.tmvtours.fr",
     "tmv-qual.nrco.fr",
     "ampize-qual.nrco.fr",
     "nramp-qual.nrco.fr",
@@ -61,7 +62,8 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
     */
     $customRouterDomains = [
         "tmv.ampize.me",
-        "tmv-qual.nrco.fr"
+        "tmv-qual.nrco.fr",
+        "www.tmvtours.fr"
     ];
     if (!empty($_SERVER["HTTP_HOST"]) && in_array($_SERVER["HTTP_HOST"], $customRouterDomains)) {
         $app->routeMiddleware([
