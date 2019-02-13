@@ -60,7 +60,8 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
         });
     */
     $customRouterDomains = [
-        "tmv.ampize.me"
+        "tmv.ampize.me",
+        "tmv-qual.nrco.fr"
     ];
     if (!empty($_SERVER["HTTP_HOST"]) && in_array($_SERVER["HTTP_HOST"], $customRouterDomains)) {
         $app->routeMiddleware([
