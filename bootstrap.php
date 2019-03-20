@@ -70,12 +70,17 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
             'preResolver' => App\Extensions\WordpressConnector\Middleware\PreResolver::class,
             'routeResolver' => App\Extensions\WordpressConnector\Middleware\WPRouteResolver::class
         ]);
+        if (config('hasFrontCache')) {
+            $middlewares = ['publicNS', 'configLoader', 'preResolver', 'routeResolver'];
+        } else { 
+            $middlewares = ['globalCache', 'publicNS', 'configLoader', 'preResolver', 'routeResolver']
+        }
         config([
             "latestRoutes" => [
                 [
                     "method" => "GET",
                     "uri" => "/{path:.*}",
-                    "action" => ['middleware' => ['publicNS', 'configLoader', 'preResolver', 'routeResolver'], "uses" => "App\Http\Controllers\MainFrontController@render"]
+                    "action" => ['middleware' => $middlewares, "uses" => "App\Http\Controllers\MainFrontController@render"]
                 ]
             ],
             "ampizeRouteRedirects" => [
