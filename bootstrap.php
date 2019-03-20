@@ -73,7 +73,7 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
         if (config('hasFrontCache')) {
             $middlewares = ['publicNS', 'configLoader', 'preResolver', 'routeResolver'];
         } else { 
-            $middlewares = ['globalCache', 'publicNS', 'configLoader', 'preResolver', 'routeResolver']
+            $middlewares = ['globalCache', 'publicNS', 'configLoader', 'preResolver', 'routeResolver'];
         }
         config([
             "latestRoutes" => [
