@@ -71,7 +71,7 @@ if(!empty($_SERVER["HTTP_HOST"])&&in_array($_SERVER["HTTP_HOST"],$authorizedDoma
             'routeResolver' => App\Extensions\WordpressConnector\Middleware\WPRouteResolver::class
         ]);
         if (config('hasFrontCache')) {
-            $middlewares = ['globalCache', 'publicNS', 'configLoader', 'preResolver', 'routeResolver'];
+            $middlewares = ['readFromCache', 'publicNS', 'configLoader', 'preResolver', 'routeResolver'];
         } else { 
             $middlewares = ['publicNS', 'configLoader', 'preResolver', 'routeResolver'];
         }
