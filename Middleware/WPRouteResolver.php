@@ -7,7 +7,7 @@ class WPRouteResolver
     {
         $host=$request->getHost();
         $path=$request->path();
-        $siteData=app()['AdminGraphQLHandler']->execute('query q{site(host:"'.$host.'"){name autoPromptConsent displayConsent consentCode checkConsentHref notFoundPage enableNotifSub oneSignalAppId injectFooter injectMenu botIndexing embeddedFooter embeddedFooterOverride embeddedMenu {root templateOverride imageURL displayRoot fallbackRoot baseLevel} lang stateJson accessJson dateFormat manifest analyticsVars analyticsType useDetailCannonical publisherName publisherLogo defaultImage defaultAuthorName homePageId id host cssCode breakpoint faviconUrl certificate aliases seoTitle seoDescription seoKeywords experimentEnable experimentSticky experimentVariants}}',null,null);
+        $siteData=app()['AdminGraphQLHandler']->execute('query q{site(host:"'.$host.'"){name autoPromptConsent displayConsent consentCode checkConsentHref notFoundPage enableNotifSub oneSignalAppId injectFooter injectMenu botIndexing embeddedFooter embeddedFooterOverride embeddedMenu {root templateOverride imageURL displayRoot fallbackRoot baseLevel} lang stateJson accessJson dateFormat manifest analyticsVars analyticsType analyticsVars2 analyticsType2 useDetailCannonical publisherName publisherLogo defaultImage defaultAuthorName homePageId id host cssCode breakpoint faviconUrl certificate aliases seoTitle seoDescription seoKeywords experimentEnable experimentSticky experimentVariants}}',null,null);
         if(empty($siteData["data"]["site"])){
             abort(404,"Site not found");
         }
