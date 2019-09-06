@@ -38,8 +38,9 @@ class PreResolver
                     } else {
                         abort(500,'Unknown redirect type');
                     }
-                    $request = Request::create($uri, 'GET', $input);
-                    return app()->dispatch($request)->getContent();
+                    $request2 = Request::create($uri, 'GET', $input);
+                    $request2->headers->set($request->headers->get());
+                    return app()->dispatch($request2)->getContent();
                 }
             }
         }
