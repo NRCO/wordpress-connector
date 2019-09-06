@@ -39,7 +39,9 @@ class PreResolver
                         abort(500,'Unknown redirect type');
                     }
                     $request2 = Request::create($uri, 'GET', $input);
-                    $request2->headers->set($request->headers->get());
+                    if($request->headers->has('SaveToCache')){
+                        $request2->headers->set('SaveToCache', 1);
+                    }
                     return app()->dispatch($request2)->getContent();
                 }
             }
