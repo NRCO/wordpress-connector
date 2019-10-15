@@ -1,5 +1,5 @@
 {
-  "name": "webtales/WordpressConnector",
+  "name": "NRCO/WordpressConnector",
   "minimum-stability": "dev",
   "require": {
     "lullabot/amp":"*",
